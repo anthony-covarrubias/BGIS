@@ -243,4 +243,3 @@ BMUpload <- function(fans, all_names, submeter_cat_final, submeter_schedules_fin
     upload_submeter_schedules <- UploadSubmeter(submeter_schedules_final)
     upload_type9 <- UploadType9(submeter_schedules_final_9)
 }
-
