@@ -2,14 +2,14 @@ library("httr")
 library("jsonlite")
 library("dplyr")
 
-get_entouch_token<-function(api_key){
-  reqstring<-"https://api1.entouchgo.com/tokens"
-  json_payload<-paste('{"ApiKey": "',api_key,'",','"RememberMe" : true,','"DeviceName" : "enoc_cb"}',sep='')
-  mycall<-POST(reqstring, add_headers('Content-Type' = 'application/json'),body=json_payload)
-  full_response<-fromJSON(content(mycall, "text"), flatten=TRUE)
-  session_token<-full_response$SessionToken
-  return (session_token)
-}
+# get_entouch_token<-function(api_key){
+#   reqstring<-"https://api1.entouchgo.com/tokens"
+#   json_payload<-paste('{"ApiKey": "',api_key,'",','"RememberMe" : true,','"DeviceName" : "enoc_cb"}',sep='')
+#   mycall<-POST(reqstring, add_headers('Content-Type' = 'application/json'),body=json_payload)
+#   full_response<-fromJSON(content(mycall, "text"), flatten=TRUE)
+#   session_token<-full_response$SessionToken
+#   return (session_token)
+# }
 
 get_customers<-function(session_token){
   reqstring<-"https://api.entouchgo.com/customers"
@@ -19,7 +19,7 @@ get_customers<-function(session_token){
   return (return_value)
 }
 
-get_facilities_from_customerID<-function(session_token, CustomerID,page){
+get_facilities_from_customerID<-function(session_token, CustomerID, page){
   reqstring<-paste("https://api.entouchgo.com/customers/",CustomerID,"/facilities?page=",page,sep="")
   mycall<-GET(reqstring, add_headers('API-Session-Token' = session_token))
   full_response<-fromJSON(content(mycall, "text"), flatten=TRUE)
